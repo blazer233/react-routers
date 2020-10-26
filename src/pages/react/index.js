@@ -1,7 +1,9 @@
 import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { reactRoutes, reactLinks } from "../../config";
-export default () => {
+import { setHeadTitle } from "../../store/actionCreators";
+const main = ({ setHeadTitle }) => {
   return (
     <div>
       <div>
@@ -10,6 +12,7 @@ export default () => {
             <Link
               {...i}
               key={index}
+              onClick={() => setHeadTitle(i.title)}
               style={{ marginLeft: "10px", fontSize: "20px " }}
             >
               {i.title}
@@ -18,7 +21,6 @@ export default () => {
         </div>
         <hr />
         <div className="videoContent">
-          <h3>React</h3>
           <Switch>
             {reactRoutes.map(item => (
               <Route key={item.path} {...item}></Route>
@@ -29,3 +31,4 @@ export default () => {
     </div>
   );
 };
+export default connect(store => store, { setHeadTitle })(main);

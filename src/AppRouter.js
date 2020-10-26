@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
 import { mainRoutes } from "./config";
+import { connect } from "react-redux";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -7,16 +9,16 @@ import {
   Redirect,
   Link,
 } from "react-router-dom";
-export default () => {
+const App = ({ HeadTitle }) => {
   return (
     <Router>
       <div className="mainDiv">
         <div className="leftNav">
-          <h1 style={{ fontSize: "40px" }}>React</h1>
+          <h1 style={{ fontSize: "25px" }}>{HeadTitle}</h1>
           <ul>
             <li>
               <Link to="/react" style={{ fontSize: "22px" }}>
-                Todolist
+                react
               </Link>
             </li>
             <li>
@@ -44,3 +46,5 @@ export default () => {
     </Router>
   );
 };
+
+export default connect(store => store, {})(App);

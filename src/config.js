@@ -10,11 +10,11 @@ export const reactLinks = [
   },
   {
     to: "/react/Inheritance",
-    title: "反向继承",
+    title: "反向继承_1",
   },
   {
     to: "/react/Inheritance2",
-    title: "反向继承",
+    title: "反向继承_2",
   },
   {
     to: "/react/PropsProxy",

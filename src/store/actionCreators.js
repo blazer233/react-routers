@@ -1,5 +1,6 @@
 import * as type from "./actionTypes";
 import axios from "axios";
+
 export const getTodoList = arg => async (dispatch, getState, extraArgument) => {
   setTimeout(async () => {
     console.log(getState(), "返回redux中的数据");
@@ -24,4 +25,8 @@ export const onClickDeleteAction = index => ({
 export const onGetList = list => ({
   type: type.GET_ALL,
   list,
+});
+export const setHeadTitle = data => ({
+  type: type.SET_HEAD_TITLE,
+  data,
 });

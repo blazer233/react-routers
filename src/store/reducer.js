@@ -1,4 +1,6 @@
 import * as type from "./actionTypes";
+import { combineReducers } from "redux";
+
 import { fromJS } from "immutable";
 const defaultDate = {
   placeholder_: "inner key",
@@ -7,9 +9,20 @@ const defaultDate = {
 };
 let res;
 
+const initTitle = "React";
+const HeadTitle = (state = initTitle, action) => {
+  switch (action.type) {
+    case type.SET_HEAD_TITLE:
+      console.log(action);
+      return action.data;
+    default:
+      return state;
+  }
+};
+
 //判断state指向的是否是同一个内存地址就知道state是否发生了变化，以此来决定是否进行render重新渲染,如果不是拷贝而是复制
 //内存地址就没有发生变化
-export default (state = defaultDate, action) => {
+const Todolist = (state = defaultDate, action) => {
   switch (action.type) {
     case type.GET_ALL:
       return { ...state, list: action.list };
@@ -29,3 +42,7 @@ export default (state = defaultDate, action) => {
       return state;
   }
 };
+export default combineReducers({
+  HeadTitle,
+  Todolist,
+});

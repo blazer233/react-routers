@@ -1,31 +1,25 @@
-import React, { useState, useEffect, useCallback } from "react";
-const useWinSize = () => {
-  const [size, setSize] = useState({
-    width: document.documentElement.clientWidth,
-    height: document.documentElement.clientHeight,
-  });
-
-  const onResize = useCallback(() => {
-    setSize({
-      width: document.documentElement.clientWidth,
-      height: document.documentElement.clientHeight,
-    });
-  }, []);
+import React, { useState, useCallback, useEffect } from "react";
+const Child = ({ callback }) => {
+  const [count, setCount] = useState(() => callback());
   useEffect(() => {
-    window.addEventListener("resize", onResize);
-    return () => {
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
-  return size;
+    console.log(111);
+    setCount(callback());
+  }, [callback]);
+  return <div>{count}</div>;
 };
-const Example9 = () => {
-  const size = useWinSize();
+export default () => {
+  const [count, setCount] = useState(1);
+  const [val, setVal] = useState("");
+  const callback_ = useCallback(() => count, [count]);
   return (
     <div>
-      页面Size:{size.width}x{size.height}
+      <h4>{count}</h4>
+      <Child callback={callback_} />
+      <div>
+        <button onClick={() => setCount(count + 1)}>+</button>
+        <input value={val} onChange={event => setVal(event.target.value)} />
+        父组件更新但子组件不会重复渲染
+      </div>
     </div>
   );
 };
-
-export default Example9;

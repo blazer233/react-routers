@@ -13,7 +13,7 @@ const initTitle = "React";
 const HeadTitle = (state = initTitle, action) => {
   switch (action.type) {
     case type.SET_HEAD_TITLE:
-      console.log(action);
+      document.title = action.data;
       return action.data;
     default:
       return state;

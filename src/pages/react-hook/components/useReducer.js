@@ -7,7 +7,7 @@ const reducer = (state, action) => {
     case "Num":
       return { count, Num: action.Num };
     default:
-      throw new Error();
+      return state;
   }
 };
 const ReducerDemo = () => {

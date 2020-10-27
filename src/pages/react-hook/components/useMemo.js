@@ -1,43 +1,27 @@
 import React, { useState, useMemo } from "react";
+//useMemo返回缓存的变量
+export default () => {
+  const [count, setCount] = useState(1);
+  const [val, setValue] = useState("");
+  const expensive = useMemo(() => {
+    console.log("compute");
+    let sum = 0;
+    for (let i = 0; i < count * 100; i++) {
+      sum += i;
+    }
+    return sum;
+  }, [count]);
 
-const ChildComponent = ({ children, name }) => {
-  const changeA = name => {
-    console.log("她来了，她来了。小A向我们走来了");
-    return name;
-  };
-
-  //   const changeAction = changeA(name);
-  const changeAction = useMemo(() => changeA(name), [name]);
-
-  return (
-    <>
-      <div>{changeAction}</div>
-      <div>{children}</div>
-    </>
-  );
-};
-
-const Example7 = () => {
-  const [A_, Astatus] = useState("A的状态");
-  const [B_, Bstatus] = useState("B的状态");
   return (
     <div>
-      <button
-        onClick={() => {
-          Astatus(+new Date() + ",A的状态");
-        }}
-      >
-        A
-      </button>
-      <button
-        onClick={() => {
-          Bstatus(+new Date() + ",B的状态");
-        }}
-      >
-        B
-      </button>
-      <ChildComponent name={A_}>{B_}</ChildComponent>
+      <h4>
+        {count}-{expensive}
+      </h4>
+      {val}
+      <div>
+        <button onClick={() => setCount(count + 1)}>+c1</button>
+        <input value={val} onChange={event => setValue(event.target.value)} />
+      </div>
     </div>
   );
 };
-export default Example7;

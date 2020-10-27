@@ -93,6 +93,10 @@ export const reactHookLinks = [
     title: "useEffect_2应用",
   },
   {
+    to: "/react-hook/useSelf",
+    title: "自定义hook应用",
+  },
+  {
     to: "/react-hook/useContext",
     title: "useContext应用",
   },
@@ -102,7 +106,7 @@ export const reactHookLinks = [
   },
   {
     to: "/react-hook/UseReducer_try",
-    title: "UseReducer_try应用",
+    title: "UseReducer-useContext",
   },
 ];
 export const reactHookRoutes = [
@@ -144,6 +148,11 @@ export const reactHookRoutes = [
   {
     path: "/react-hook/useCallback",
     component: lazy(() => import("./pages/react-hook/components/useCallback")),
+    exact: true,
+  },
+  {
+    path: "/react-hook/useSelf",
+    component: lazy(() => import("./pages/react-hook/components/useSelf")),
     exact: true,
   },
   {

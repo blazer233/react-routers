@@ -1,4 +1,4 @@
-import React, { useRef, useEffect,useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 // const Example8 = () => {
 //   const inputEl = useRef();
 //   const onButtonClick = () => {
@@ -16,6 +16,7 @@ import React, { useRef, useEffect,useState } from "react";
 //     </>
 //   );
 // };
+//useRef所拿到的所有之都保存在current上 
 function Example8() {
   const [count, setCount] = useState(0);
 

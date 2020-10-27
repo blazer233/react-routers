@@ -4,6 +4,8 @@ const Example2 = () => {
   const [sex, setSex] = useState("男");
   const [work, setWork] = useState("前端程序员");
   const [text, setText] = useState("jspang");
+  //setState 只在合成事件和钩子函数中是“异步”的，在原生事件和 setTimeout 中都是同步的。
+  //useState 异步
   /**
    * 相当于
    * let _useState=useState(0)

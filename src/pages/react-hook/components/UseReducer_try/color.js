@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from "react";
-
+//useReducer接收纯函数和一个默认值
+//通过创建的createContext将默认值和改变方法扩散出去
 export const ColorContext = createContext();
 export const UPDATE_COLOR = "UPDATE_COLOR";
 

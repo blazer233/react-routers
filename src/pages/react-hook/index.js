@@ -22,6 +22,7 @@ const main = ({ setHeadTitle }) => {
           ))}
         </div>
         <hr />
+        <h3>react-hooks学习</h3>
         <div className="videoContent">
           <Switch>
             {reactHookRoutes.map(item => (
@@ -34,3 +35,7 @@ const main = ({ setHeadTitle }) => {
   );
 };
 export default connect(store => store, { setHeadTitle })(main);
+/**
+ * useMemo和useCallback都会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行；
+ * 并且这两个hooks都返回缓存的值，useMemo返回缓存的变量，useCallback返回缓存的函数。
+ */

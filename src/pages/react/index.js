@@ -3,7 +3,11 @@ import { Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { reactRoutes, reactLinks } from "../../config";
 import { setHeadTitle } from "../../store/actionCreators";
+// import { changeTitle } from "../../util";
 const main = ({ setHeadTitle }) => {
+  const change = title => {
+    setHeadTitle(title);
+  };
   return (
     <div>
       <div>
@@ -12,7 +16,7 @@ const main = ({ setHeadTitle }) => {
             <Link
               {...i}
               key={index}
-              onClick={() => setHeadTitle(i.title)}
+              onClick={() => change(i.title)}
               style={{ marginLeft: "10px", fontSize: "20px " }}
             >
               {i.title}
@@ -20,6 +24,7 @@ const main = ({ setHeadTitle }) => {
           ))}
         </div>
         <hr />
+        <h3>react学习</h3>
         <div className="videoContent">
           <Switch>
             {reactRoutes.map(item => (

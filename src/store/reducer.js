@@ -42,12 +42,6 @@ const Todolist = (state = defaultDate, action) => {
       return state;
   }
 };
-console.log(
-  combineReducers({
-    HeadTitle,
-    Todolist,
-  })
-);
 export default combineReducers({
   HeadTitle,
   Todolist,

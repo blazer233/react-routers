@@ -50,7 +50,6 @@ const Foot = prop => {
 
 class TodoListUI extends Component {
   render() {
-    console.log(this.props.child, this.props, `11111111111111`);
     return (
       <React.Fragment>
         <div style={{ textAlign: "center" }}>

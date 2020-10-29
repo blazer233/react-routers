@@ -1,12 +1,14 @@
 import * as type from "./actionTypes";
 import axios from "axios";
 
-export const getTodoList = arg => async (dispatch, getState, extraArgument) => {
+export const getTodoList = arg => async (dispatch, getState) => {
   console.log(getState(), "返回redux中的数据");
-  let res = await axios.get(`http://localhost:3456/${arg}`);
-  const data = res.data;
-  const action = onGetList(data.list);
-  dispatch(action);
+  setTimeout(async () => {
+    let res = await axios.get(`http://localhost:3456/${arg}`);
+    const data = res.data;
+    const action = onGetList(data.list);
+    dispatch(action);
+  }, 1000);
 };
 
 export const onInputEventAction = value => ({

@@ -1,29 +1,9 @@
-const createThunkMiddleware = extraArgument => middlewareAPI => {
-  let dispatch = middlewareAPI.dispatch;
-  let getState = middlewareAPI.getState;
-  return next => action => {
-    return typeof action === "function"
-      ? action(dispatch, getState, extraArgument)
-      : next(action);
-  };
-};
-
-var thunk = createThunkMiddleware();
-thunk.withExtraArgument = createThunkMiddleware;
-
-console.log(thunk);
+export default ({ dispatch, getState }) => next => action =>
+  typeof action === "function" ? action(dispatch, getState) : next(action);
+//fn(store)(store.dispatch)(action)
 /**
- * thunk:
- * 执行一层脱掉一层 =>
- * 
- * middlewareAPI => {
-        let dispatch = middlewareAPI.dispatch;
-        let getState = middlewareAPI.getState;
-        return next => action => {
-            return typeof action === "function"
-            ? action(dispatch, getState, extraArgument)
-            : next(action);
-        };
-    };
+ * action 是个 function ，就故意执行 action , 而不执行 next(action) ,
+ * 等于让 store.dispatch  失效了,同时将dispatch, getState传到应用action的函数中
+ * 让其在函数内store.dispatch(action)把 dispatch
+ * 返回给用户，让用户自己调用，正常使用是不会把流程停下来的。
  */
-export default thunk;

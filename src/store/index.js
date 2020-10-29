@@ -1,13 +1,14 @@
 import { applyMiddleware, compose, createStore } from "./core/redux";
-import reducer from "./reducer";
 import thunk from "./core/redux-thunk";
+import reducer from "./reducer";
 import logger from "redux-logger";
 /**
  * applyMiddleware 即saction和store之间。即dispatch的封装和升级。
  */
 /**
- * Redux 引入中间件机制，其实就是为了在 dispatch 前后，统一事件
-  诸如统一的日志记录、引入 thunk 统一处理异步 Action Creator 等都属于中间件
+ * redux-logger在最后原因在于其原因是害怕最右边的中间件『捣乱』，
+ * 不执行 next(action) , 那 logger 再执行 next(action) 也无法真正触发 dispatch .
+ * 例如 thunk 处理异步时
  */
 /**
  * redux-thunk:
@@ -18,10 +19,7 @@ import logger from "redux-logger";
  * Redux 规定到达 reducer 的 action 必须是一个 plain object 类型。
  *
  */
-console.log(createStore);
-let res = applyMiddleware(thunk, logger);
-console.log(res); //返回第一层 createStore => (reducer, preloadedState, enhancer) => {}
-const store = createStore(reducer, compose(res));
+const store = createStore(reducer, compose(applyMiddleware(thunk, logger)));
 /**
  * Redux 有五个 API，分别是：
     createStore(reducer, [initialState])

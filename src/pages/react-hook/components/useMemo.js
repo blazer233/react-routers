@@ -22,6 +22,9 @@ export default () => {
         <button onClick={() => setCount(count + 1)}>+c1</button>
         <input value={val} onChange={event => setValue(event.target.value)} />
       </div>
+      <hr />
+      useMemo，返回一个memoized值，只有第二个参数发生变化时才会重新计算。类似
+      useCallback。
     </div>
   );
 };

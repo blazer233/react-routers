@@ -16,7 +16,7 @@ import React, { useRef, useEffect, useState } from "react";
 //     </>
 //   );
 // };
-//useRef所拿到的所有之都保存在current上 
+//useRef所拿到的所有之都保存在current上
 function Example8() {
   const [count, setCount] = useState(0);
 
@@ -30,6 +30,8 @@ function Example8() {
     <div>
       <p>You clicked {count} times</p>
       <button onClick={() => setCount(count + 1)}>Click me</button>
+      <hr />
+      useRef，返回一个可变的ref对象
     </div>
   );
 }

@@ -39,6 +39,9 @@ const ReducerDemo = () => {
           });
         }}
       />
+      <hr />
+      // useReducer，具体用法和redux类似，使用dispatch(action)修改数据。 //
+      reducer中处理数据并返回新的state
     </>
   );
 };

@@ -1,7 +1,7 @@
 import * as type from "./actionTypes";
-import { combineReducers } from "redux";
-
 import { fromJS } from "immutable";
+import combineReducers from "./core/combineReducers";
+
 const defaultDate = {
   placeholder_: "inner key",
   list: [],
@@ -42,6 +42,12 @@ const Todolist = (state = defaultDate, action) => {
       return state;
   }
 };
+console.log(
+  combineReducers({
+    HeadTitle,
+    Todolist,
+  })
+);
 export default combineReducers({
   HeadTitle,
   Todolist,

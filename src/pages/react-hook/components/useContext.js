@@ -27,6 +27,8 @@ const Example4 = () => {
       <CountContext.Provider value={count}>
         <Counter />
       </CountContext.Provider>
+      // useContext，和 React.createConext() 配合使用。 父组件使用
+      Context.Provider 生产数据，子组件使用 useContext() 获取数据。
     </div>
   );
 };

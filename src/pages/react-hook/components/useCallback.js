@@ -20,6 +20,11 @@ export default () => {
         <input value={val} onChange={event => setVal(event.target.value)} />
         父组件更新但子组件不会重复渲染
       </div>
+      <hr />
+      <p>
+        useCallback，返回一个memoized函数，第二个参数类似useEffect，只有参数变化时才会更改。
+      </p>
+      <p>useCallback(fn，inputs) 等效 useMemo(() =>fn，inputs)。</p>
     </div>
   );
 };

@@ -86,11 +86,15 @@ export const reactHookLinks = [
   },
   {
     to: "/react-hook/useEffect_1",
-    title: "useEffect_1应用",
+    title: "useEffect同步渲染",
   },
   {
     to: "/react-hook/useEffect_2",
-    title: "useEffect_2应用",
+    title: "useEffect第二参数",
+  },
+  {
+    to: "/react-hook/useEffect_3",
+    title: "useEffect渲染顺序",
   },
   {
     to: "/react-hook/useSelf",
@@ -138,6 +142,11 @@ export const reactHookRoutes = [
   {
     path: "/react-hook/useEffect_2",
     component: lazy(() => import("./pages/react-hook/components/useEffect_2")),
+    exact: true,
+  },
+  {
+    path: "/react-hook/useEffect_3",
+    component: lazy(() => import("./pages/react-hook/components/useEffect_3")),
     exact: true,
   },
   {

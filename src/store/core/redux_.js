@@ -29,6 +29,12 @@ export const compose = (...funcs) => {
   if (funcs.length === 1) return funcs[0];
   return funcs.reduceRight((a, b) => (...args) => a(b(...args)));
 };
+/**
+ * 同步串行化compose
+ */
+
+export const compose = (...args) => arg =>
+  args.reduce((composed, f) => f(composed), arg);
 
 export const applyMiddleware = (...middlewares) =>
   /* 返回的是一个增强版的 createStore */
@@ -52,6 +58,7 @@ export const applyMiddleware = (...middlewares) =>
     // redux 中间件的核心就是复写 dispatch
     // 把 store.dispatch 传递给第一个中间件
     // 每一个中间件都会返回一个新的 dispatch 传递给下一个中间件 即next
+    //store.dispatch作为永远向下传递的值去接受action
     dispatch = compose(...chain)(store.dispatch);
     return {
       //返回新的store

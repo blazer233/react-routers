@@ -19,16 +19,11 @@ export const createStore = (reducer, defaultstate, enhancer) => {
     getState,
   };
 };
-// function compose(...funcs) {
-//   return arg => funcs.reduceRight((composed, f) => f(composed), arg);
-// }
-export const compose = (...funcs) => {
-  if (funcs.length === 0) return arg => arg;
-  if (funcs.length === 1) return funcs[0];
-  return funcs.reduceRight((a, b) => (...args) => a(b(...args)));
-};
+//const store = createStore(reducer, compose(applyMiddleware(thunk, logger)));
 
+export const compose = (...funcs) => arg => funcs.reduceRight((a, b) => b(a), arg);
 export const applyMiddleware = (...middlewares) => createStore => (...args) => {
+  //args即reducer, defaultstate
   var store = createStore(...args);
   var dispatch = store.dispatch;
   var chain = [];

@@ -2,6 +2,19 @@ import { applyMiddleware, compose, createStore } from "./core/redux";
 import thunk from "./core/redux-thunk";
 import reducer from "./reducer";
 import logger from "redux-logger";
+let TestApplyMiddleware = [
+  ({ dispatch, getState }) => next => action => {
+    console.log("打点 >>>");
+    console.log(next, action);
+    next(action);
+    console.log("打点 <<<");
+  },
+  ({ dispatch, getState }) => next => action => {
+    console.log("日志 >>>");
+    next(action);
+    console.log("日志 <<<");
+  },
+];
 /**
  * applyMiddleware 即saction和store之间。即dispatch的封装和升级。
  */
@@ -19,7 +32,10 @@ import logger from "redux-logger";
  * Redux 规定到达 reducer 的 action 必须是一个 plain object 类型。
  *
  */
-const store = createStore(reducer, compose(applyMiddleware(thunk, logger)));
+const store = createStore(
+  reducer,
+  compose(applyMiddleware(...TestApplyMiddleware, thunk, logger))
+);
 /**
  * Redux 有五个 API，分别是：
     createStore(reducer, [initialState])

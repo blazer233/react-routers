@@ -3,16 +3,22 @@ import thunk from "./core/redux-thunk";
 import reducer from "./reducer";
 import logger from "redux-logger";
 let TestApplyMiddleware = [
-  ({ dispatch, getState }) => next => action => {
+  store => next => action => {
     console.log("打点 >>>");
-    console.log(next, action);
     next(action);
     console.log("打点 <<<");
   },
-  ({ dispatch, getState }) => next => action => {
+  store => next => action => {
     console.log("日志 >>>");
     next(action);
     console.log("日志 <<<");
+  },
+  ({ getState }) => next => action => {
+    console.group(action.type);
+    console.info("dispatching", action);
+    console.info("next state", getState());
+    console.groupEnd();
+    return next(action);
   },
 ];
 /**
@@ -34,7 +40,7 @@ let TestApplyMiddleware = [
  */
 const store = createStore(
   reducer,
-  compose(applyMiddleware(...TestApplyMiddleware, thunk, logger))
+  compose(applyMiddleware(thunk, ...TestApplyMiddleware,logger))
 );
 /**
  * Redux 有五个 API，分别是：

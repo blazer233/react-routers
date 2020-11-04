@@ -4,6 +4,6 @@ export default ({ dispatch, getState }) => next => action =>
 /**
  * action 是个 function ，就故意执行 action , 而不执行 next(action) ,
  * 等于让 store.dispatch  失效了,同时将dispatch, getState传到应用action的函数中
- * 让其在函数内store.dispatch(action)把 dispatch
- * 返回给用户，让用户自己调用，正常使用是不会把流程停下来的。
+ * 让其在函数内store.dispatch(action) 把 dispatch
+ * 返回给用户，让用户自己调用，正常使则按照普通action处理
  */

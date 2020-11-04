@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { mainRoutes } from "./config";
+// import { connect } from "./redux-react";
 import { connect } from "react-redux";
 
 import {
@@ -46,5 +47,6 @@ const App = ({ HeadTitle }) => {
     </Router>
   );
 };
+// export default connect(store => store, ()=>{})(App);
 
 export default connect(store => store, {})(App);

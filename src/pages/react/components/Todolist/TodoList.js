@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+// import { connect } from "../../../../redux-react";
 import { connect } from "react-redux";
 import {
   onInputEventAction,
@@ -44,6 +45,24 @@ const TodoList = ({
 // 将store里面的state映射给当前组件，成为组件的props
 // 只要 Redux store 发生改变，mapStateToProps 函数就会被调用。该
 // 回调函数必须返回一个纯对象，这个对象会与组件的 props 合并
+// const mapDispatchToPropsThemeSwitch = dispatch => ({
+//   getTodoList() {
+//     dispatch(getTodoList);
+//   },
+//   onInputEventAction() {
+//     dispatch(onInputEventAction);
+//   },
+//   onClickEventAction() {
+//     dispatch(onClickEventAction);
+//   },
+//   onClickDeleteAction() {
+//     dispatch(onClickDeleteAction);
+//   },
+// });
+// export default connect(
+//   store => store.Todolist,
+//   mapDispatchToPropsThemeSwitch
+// )(TodoList);
 export default connect(store => store.Todolist, {
   getTodoList,
   onInputEventAction,

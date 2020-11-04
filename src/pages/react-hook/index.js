@@ -1,4 +1,5 @@
 import React from "react";
+// import { connect } from "../../redux-react";
 import { connect } from "react-redux";
 
 import { Route, Switch, Link } from "react-router-dom";
@@ -34,6 +35,13 @@ const main = ({ setHeadTitle }) => {
     </div>
   );
 };
+
+// const dispatchProps = dispatch => ({
+//   setHeadTitle: () => {
+//     dispatch(setHeadTitle);
+//   },
+// });
+// export default connect(store => store, dispatchProps)(main);
 export default connect(store => store, { setHeadTitle })(main);
 /**
  * useMemo和useCallback都会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行；

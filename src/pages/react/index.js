@@ -1,13 +1,10 @@
 import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
+// import { connect } from "../../redux-react";
 import { connect } from "react-redux";
 import { reactRoutes, reactLinks } from "../../config";
 import { setHeadTitle } from "../../store/actionCreators";
-// import { changeTitle } from "../../util";
 const main = ({ setHeadTitle }) => {
-  const change = title => {
-    setHeadTitle(title);
-  };
   return (
     <div>
       <div>
@@ -16,7 +13,7 @@ const main = ({ setHeadTitle }) => {
             <Link
               {...i}
               key={index}
-              onClick={() => change(i.title)}
+              onClick={() => setHeadTitle(i.title)}
               style={{ marginLeft: "10px", fontSize: "20px " }}
             >
               {i.title}
@@ -36,4 +33,10 @@ const main = ({ setHeadTitle }) => {
     </div>
   );
 };
+// const dispatchProps = dispatch => ({
+//   setHeadTitle: i => {
+//     dispatch(setHeadTitle(i));
+//   },
+// });
+// export default connect(store => store, dispatchProps)(main);
 export default connect(store => store, { setHeadTitle })(main);

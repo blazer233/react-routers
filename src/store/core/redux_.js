@@ -42,7 +42,7 @@ export const applyMiddleware = (...middlewares) =>
     //reducer, preloadedState, enhancer
     // 用原 createStore 先生成一个 store，其包含 getState / dispatch / subscribe / replaceReducer 四个 API
     var store = createStore(...args);
-    var dispatch = store.dispatch; // 指向原 dispatch
+    var dispatch = { store }; //  解构出原始的dispatch
     var chain = []; // 存储中间件的数组
     var middlewareAPI = {
       getState: store.getState,
@@ -66,3 +66,12 @@ export const applyMiddleware = (...middlewares) =>
       dispatch, // 新 dispatch 覆盖原 dispatch，往后调用 dispatch 就会触发 chain 内的中间件链式串联执行
     };
   };
+/**
+ *  单纯的Redux只是一个状态机，store里面存了所有的状态state，要改变里面的状态state，只能dispatch action。
+    对于发出来的action需要用reducer来处理，reducer会计算新的state来替代老的state。
+    subscribe方法可以注册回调方法，当dispatch action的时候会执行里面的回调。
+    Redux其实就是一个发布订阅模式！
+    Redux还支持enhancer，enhancer其实就是一个装饰者模式，传入当前的createStore，返回一个增强的createStore。
+    Redux使用applyMiddleware支持中间件，applyMiddleware的返回值其实就是一个enhancer。
+    Redux的中间件也是一个装饰者模式，传入当前的dispatch，返回一个增强了的dispatch。
+ */

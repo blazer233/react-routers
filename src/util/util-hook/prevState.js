@@ -8,10 +8,10 @@ import { useRef, useEffect, useState } from "react";
   const prevScrollTop = usePrevState(scrollTop);
  */
 export default state => {
-  const [newState, setNewState] = useState(state);
+  const [State, setNewState] = useState(state);
   const Refs = useRef();
   useEffect(() => {
-    Refs.current = newState;
+    Refs.current = State;
     setNewState(state);
   }, [state]);
   return Refs.current;

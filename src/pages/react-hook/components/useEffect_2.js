@@ -1,5 +1,5 @@
 //实现componentWillUnmount 销毁定时器 、状态、解绑
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const abortController = new AbortController();
@@ -21,10 +21,11 @@ const Index = () => {
 
 const List = () => {
   const [arrData, setDate] = useState([]);
-  const fetchData = async () => {
+
+  const fetchData = useCallback(async () => {
     const result = await axios.get(`http://localhost:3456/Todolist`);
     setDate(result.data.list);
-  };
+  }, [arrData]);
   useEffect(() => {
     fetchData();
     console.log(`这里是列表页`);
@@ -32,7 +33,8 @@ const List = () => {
       abortController.abort();
       console.log("离开列表页");
     };
-  }, [JSON.stringify(arrData)]);
+  }, [fetchData]);
+
   return (
     <div>
       {arrData.map((item, index) => (
@@ -82,4 +84,4 @@ const Example3 = () => {
   );
 };
 
-export default Example3;
+export default List;

@@ -28,6 +28,10 @@ export const reactLinks = [
     to: "/react/event",
     title: "react事件",
   },
+  {
+    to: "/react/ReCompose",
+    title: "ReCompose应用",
+  },
 ];
 export const reactRoutes = [
   {
@@ -59,6 +63,11 @@ export const reactRoutes = [
   {
     path: "/react/RenderProps",
     component: lazy(() => import("./pages/react/components/RenderProps")),
+    exact: true,
+  },
+  {
+    path: "/react/ReCompose",
+    component: lazy(() => import("./pages/react/components/ReCompose")),
     exact: true,
   },
   {
@@ -101,6 +110,10 @@ export const reactHookLinks = [
     title: "自定义hook应用",
   },
   {
+    to: "/react-hook/useImperativeHandle",
+    title: "useImperativeHandle应用",
+  },
+  {
     to: "/react-hook/useContext",
     title: "useContext应用",
   },
@@ -111,6 +124,10 @@ export const reactHookLinks = [
   {
     to: "/react-hook/UseReducer_try",
     title: "UseReducer-useContext",
+  },
+  {
+    to: "/react-hook/UesUnstatedNext",
+    title: "UesUnstatedNext",
   },
 ];
 export const reactHookRoutes = [
@@ -160,6 +177,13 @@ export const reactHookRoutes = [
     exact: true,
   },
   {
+    path: "/react-hook/useImperativeHandle",
+    component: lazy(() =>
+      import("./pages/react-hook/components/UseImperativeHandle")
+    ),
+    exact: true,
+  },
+  {
     path: "/react-hook/useSelf",
     component: lazy(() => import("./pages/react-hook/components/useSelf")),
     exact: true,
@@ -168,6 +192,13 @@ export const reactHookRoutes = [
     path: "/react-hook/UseReducer_try",
     component: lazy(() =>
       import("./pages/react-hook/components/UseReducer_try")
+    ),
+    exact: true,
+  },
+  {
+    path: "/react-hook/UesUnstatedNext",
+    component: lazy(() =>
+      import("./pages/react-hook/components/UesUnstatedNext")
     ),
     exact: true,
   },

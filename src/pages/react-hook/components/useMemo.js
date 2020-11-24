@@ -5,11 +5,8 @@ export default () => {
   const [val, setValue] = useState("");
   const expensive = useMemo(() => {
     console.log("compute");
-    let sum = 0;
-    for (let i = 0; i < count * 100; i++) {
-      sum += i;
-    }
-    return sum;
+    let sum = 100;
+    return sum * count;
   }, [count]);
 
   return (
@@ -19,10 +16,10 @@ export default () => {
       </h4>
       {val}
       <div>
-        <button onClick={() => setCount(count + 1)}>+c1</button>
+        <button onClick={() => setCount(count + 1)}>+</button>
         <input value={val} onChange={event => setValue(event.target.value)} />
       </div>
-      <hr />
+      <hr />与 vue 的 computed 类似
       useMemo，返回一个memoized值，只有第二个参数发生变化时才会重新计算。类似
       useCallback。
     </div>

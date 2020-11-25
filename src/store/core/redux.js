@@ -20,8 +20,8 @@ export const createStore = (reducer, defaultstate, enhancer) => {
   };
 };
 //const store = createStore(reducer, compose(applyMiddleware(thunk, logger)));
-
-export const compose = (...funcs) => arg => funcs.reduceRight((a, b) => b(a), arg);
+export const compose = (...funcs) => arg =>
+  funcs.reduceRight((a, b) => b(a), arg);
 export const applyMiddleware = (...middlewares) => createStore => (...args) => {
   //args即reducer, defaultstate
   var store = createStore(...args);

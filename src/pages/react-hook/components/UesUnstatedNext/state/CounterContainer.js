@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { createContainer } from "unstated-next";
+import createContainer from "../core";
 
 function useCounter(initialState = 0) {
   let [count, setCount] = useState(initialState);

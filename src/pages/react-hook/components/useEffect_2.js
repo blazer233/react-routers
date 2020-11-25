@@ -25,7 +25,7 @@ const List = () => {
   const fetchData = useCallback(async () => {
     const result = await axios.get(`http://localhost:3456/Todolist`);
     setDate(result.data.list);
-  }, [arrData]);
+  }, []);
   useEffect(() => {
     fetchData();
     console.log(`这里是列表页`);

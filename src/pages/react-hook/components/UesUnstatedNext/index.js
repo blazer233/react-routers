@@ -4,13 +4,22 @@ import TodoListPage from "./pages/todolist_page";
 import CounterContainer from "./state/CounterContainer";
 import TodoListContainer from "./state/TodoListContainer";
 
-const compose = (...containers) => props =>
-  containers.reduceRight(
-    (children, Container) => (
-      <Container.Provider>{children}</Container.Provider>
-    ),
-    props.children
-  );
+// const compose = (...containers) => props =>
+//   containers.reduceRight(
+//     (children, Container) => (
+//       <Container.Provider>{children}</Container.Provider>
+//     ),
+//     props.children
+//   );
+function compose(...containers) {
+  return function Component(props) {
+    console.log(props);
+    return containers.reduceRight((children, Container) => {
+      console.log(children, Container, props.children);
+      return <Container.Provider>{children}</Container.Provider>;
+    }, props.children);
+  };
+}
 
 let Provider = compose(CounterContainer, TodoListContainer);
 /**
@@ -37,9 +46,9 @@ let Provider = compose(CounterContainer, TodoListContainer);
 export default () => {
   return (
     <div>
-      <CounterContainer.Provider>
+      <CounterContainer.Provider init={10}>
         <CounterPage />
-        <TodoListContainer.Provider>
+        <TodoListContainer.Provider init={[{ id: -1, title: "init" }]}>
           <TodoListPage />
         </TodoListContainer.Provider>
       </CounterContainer.Provider>
